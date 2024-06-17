@@ -1,8 +1,5 @@
 package org.example.k2_client;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -23,6 +20,11 @@ public class ConnectionThread extends Thread {
                     new InputStreamReader(input)
             );
             writer = new PrintWriter(output,true);
+            String rawMessage;
+
+            while((rawMessage = reader.readLine()) != null) {
+
+            }
 
         } catch (IOException e) {
             throw new RuntimeException(e);
