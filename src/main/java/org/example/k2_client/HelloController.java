@@ -51,4 +51,10 @@ public class HelloController {
                         toList()
         ));
     }
+
+    public void onEnter() {
+        Platform.runLater(
+                () -> update()
+        );
+    }
 }

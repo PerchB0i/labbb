@@ -9,7 +9,7 @@
         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
     </padding>
     <children>
-        <TextField fx:id="filterField" />
+        <TextField fx:id="filterField" onAction="#onEnter"/>
         <ListView fx:id="wordList" VBox.vgrow="ALWAYS" />
         <HBox spacing="10.0">
             <children>
