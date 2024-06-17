@@ -41,6 +41,9 @@ public class HelloController {
         formatter = DateTimeFormatter.ofPattern("HH:mm:ss ");
         wordList.setItems(FXCollections.observableList(
                 words.stream().
+                        filter(
+                                (item) -> item.content.startsWith(filterField.getText())
+                        ).
                         sorted((word1, word2) -> word1.content.compareTo(word2.content)).
                         map(
                                 (item) -> item.time.format(formatter) + item.content
