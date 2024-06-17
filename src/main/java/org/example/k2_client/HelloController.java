@@ -1,9 +1,23 @@
 package org.example.k2_client;
 
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+
+import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 public class HelloController {
+
+    public List<Word> words = new ArrayList<>();
+    public Label wordCountLabel;
+    public TextField filterField;
+    public ListView wordList;
 
     public HelloController() {
         ClientReceiver.controller = this;
@@ -11,6 +25,22 @@ public class HelloController {
 
     @FXML
     public void onWordReceived(String word) {
+        words.add(new Word(word, LocalTime.now()));
+        Platform.runLater(
+                () -> {
+                    wordCountLabel.setText(String.valueOf(words.size()));
+                    this.update();
+                }
+        );
+    }
 
+    public void update() {
+        wordList.setItems(FXCollections.observableList(
+                words.stream().
+                        map(
+                                (item) -> item.content
+                        ).
+                        toList()
+        ));
     }
 }
