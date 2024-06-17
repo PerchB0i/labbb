@@ -23,7 +23,7 @@ public class ConnectionThread extends Thread {
             String rawMessage;
 
             while((rawMessage = reader.readLine()) != null) {
-
+                ClientReceiver.receiveWord(rawMessage);
             }
 
         } catch (IOException e) {
